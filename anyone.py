@@ -114,9 +114,15 @@ def get_parser():
         choices=range(1, MOST_COMMON + 1), dest="common",
         help="Likelihood of common values (default: 3)")
 
+    parser.add_argument("-n, --number", default=1, type=int,
+        dest="number", help="Number of identities to generate (default: 1)")
+
     return parser
 
 if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
-    print Anyone(**vars(args))
+    for i in range(args.number):
+        print Anyone(**vars(args))
+        if i < args.number - 1:
+            print "- - - - -"
